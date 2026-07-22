@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tercih Panosu · YKS 2026</title>
+<meta name="description" content="2026 YKS Tercih Kılavuzu — şehir şehir tüm üniversiteler ve bölümler, 2025 taban puanları ve başarı sıralarıyla.">
+<meta name="theme-color" content="#0E2430">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --zemin:#F2F6F5; --kart:#FFFFFF; --murekkep:#0E2430; --soluk:#5B7280;
+  --iskele:#0E7C8B; --iskele-koyu:#0A5E6A; --vapur:#FF7A1A; --vapur-koyu:#E05F00;
+  --sis:#D9E4E3; --yesil:#118B50; --yesil-bg:#E4F4EC; --turuncu-bg:#FFF0E2;
+  --gri-bg:#EDF1F1; --mavi-bg:#E3F1F3; --radius:14px;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --disp:'Archivo',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--zemin);color:var(--murekkep);font-family:var(--disp);font-size:15px;line-height:1.45;padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+button{font-family:inherit;border:0;background:none;cursor:pointer;color:inherit}
+input{font-family:inherit}
+a{color:var(--iskele)}
+.wrap{max-width:760px;margin:0 auto;padding:0 14px}
+
+/* ── üst bant ── */
+header{background:var(--murekkep);color:#fff;position:sticky;top:0;z-index:40;box-shadow:0 2px 12px rgba(14,36,48,.25)}
+.hbar{max-width:760px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.brand{display:flex;flex-direction:column;line-height:1.05;min-width:0}
+.brand b{font-weight:900;font-stretch:112%;letter-spacing:.02em;font-size:17px;white-space:nowrap}
+.brand span{font-family:var(--mono);font-size:10px;color:#9FC3CB;letter-spacing:.14em}
+.brand .dot{color:var(--vapur)}
+.back{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.09);display:none;align-items:center;justify-content:center;font-size:19px;flex:none}
+.back.show{display:flex}
+.searchbtn{margin-left:auto;width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.09);font-size:17px;flex:none}
+.searchrow{max-width:760px;margin:0 auto;padding:0 14px 12px;display:none}
+.searchrow.open{display:block}
+.searchrow input{width:100%;padding:11px 14px;border-radius:11px;border:0;font-size:16px;background:#fff;color:var(--murekkep)}
+
+/* ── kalkış panosu hissi ── */
+.board{background:var(--murekkep);color:#fff;border-radius:var(--radius);padding:18px 16px 16px;margin:14px 0;position:relative;overflow:hidden}
+.board::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:repeating-linear-gradient(90deg,var(--vapur) 0 18px,transparent 18px 28px)}
+.board h1{font-size:21px;font-weight:900;font-stretch:110%;letter-spacing:.01em}
+.board p{color:#B9D2D8;font-size:13px;margin-top:5px}
+.board .mono{font-family:var(--mono);color:var(--vapur);font-size:11px;letter-spacing:.12em;margin-bottom:6px}
+
+.sec{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--soluk);margin:20px 2px 8px;text-transform:uppercase}
+
+/* şehir ızgarası */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.city{background:var(--kart);border:1px solid var(--sis);border-radius:11px;padding:11px 12px;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:6px;transition:transform .06s}
+.city:active{transform:scale(.97)}
+.city b{font-size:14.5px;font-weight:700}
+.city span{font-family:var(--mono);font-size:11px;color:var(--soluk);flex:none}
+.city.pin{border-color:var(--iskele);background:linear-gradient(0deg,rgba(14,124,139,.06),rgba(14,124,139,.06)),#fff}
+
+/* üniversite kartları */
+.uni{background:var(--kart);border:1px solid var(--sis);border-radius:var(--radius);padding:14px;margin-bottom:9px;width:100%;text-align:left;display:block;transition:transform .06s}
+.uni:active{transform:scale(.985)}
+.uni h3{font-size:15.5px;font-weight:800;line-height:1.25}
+.uni .meta{display:flex;gap:7px;margin-top:8px;flex-wrap:wrap;align-items:center}
+.tag{font-family:var(--mono);font-size:10.5px;padding:2.5px 8px;border-radius:999px;letter-spacing:.05em}
+.tag.D{background:var(--mavi-bg);color:var(--iskele-koyu)}
+.tag.V{background:#F3ECFA;color:#6C3FA8}
+.tag.K{background:#FDF1E3;color:#9A6210}
+.tag.Y{background:#EFEFEF;color:#555}
+.tag.n{background:var(--gri-bg);color:var(--soluk)}
+
+/* program satırları — tarife panosu */
+.fak{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--iskele-koyu);background:var(--mavi-bg);padding:6px 12px;border-radius:8px;margin:16px 0 8px;text-transform:uppercase}
+.prog{background:var(--kart);border:1px solid var(--sis);border-radius:11px;padding:11px 12px;margin-bottom:7px;display:flex;gap:10px;align-items:flex-start}
+.prog .lamp{flex:none;width:10px;height:10px;border-radius:50%;margin-top:5px;background:#C7D3D3}
+.prog .lamp.g{background:var(--yesil);box-shadow:0 0 0 4px var(--yesil-bg)}
+.prog .lamp.o{background:var(--vapur);box-shadow:0 0 0 4px var(--turuncu-bg)}
+.prog .lamp.b{background:var(--iskele);box-shadow:0 0 0 4px var(--mavi-bg)}
+.pbody{flex:1;min-width:0}
+.pname{font-size:14.5px;font-weight:700;line-height:1.3}
+.puni{font-size:12px;color:var(--soluk);margin-top:2px}
+.pchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px;align-items:center}
+.chip{font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:6px;background:var(--gri-bg);color:var(--soluk)}
+.chip.t{background:var(--murekkep);color:#fff}
+.chip.doldu{background:var(--turuncu-bg);color:var(--vapur-koyu);font-weight:600}
+.chip.yeni{background:var(--yesil-bg);color:var(--yesil);font-weight:600}
+.pnum{flex:none;text-align:right;font-family:var(--mono)}
+.pr{font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+.pq{font-size:11px;color:var(--soluk);margin-top:2px}
+.pk{font-size:10px;color:var(--soluk);margin-top:3px}
+.star{flex:none;font-size:17px;line-height:1;padding:2px 2px;color:#C9D4D4;margin-top:2px}
+.star.on{color:var(--vapur)}
+
+/* filtre çubuğu */
+.fbar{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none}
+.fbar::-webkit-scrollbar{display:none}
+.f{flex:none;font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:999px;background:var(--kart);border:1px solid var(--sis);color:var(--soluk)}
+.f.on{background:var(--iskele);border-color:var(--iskele);color:#fff}
+
+/* sıralama şeridi */
+.dock{position:fixed;left:0;right:0;bottom:0;background:var(--murekkep);color:#fff;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -4px 18px rgba(14,36,48,.3)}
+.dock .in{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:9px}
+.dock label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:#9FC3CB;display:block;margin-bottom:3px}
+.dock .field{flex:1}
+.dock select,.dock input{width:100%;padding:8px 10px;border-radius:9px;border:0;font-size:15px;font-family:var(--mono);background:rgba(255,255,255,.12);color:#fff}
+.dock select option{color:#111}
+.dock input::placeholder{color:#7FA0A9}
+.dock .go{flex:none;background:var(--vapur);color:#fff;font-weight:800;padding:9px 16px;border-radius:9px;font-size:14px;margin-top:15px}
+.legend{max-width:760px;margin:4px auto 0;font-size:10.5px;color:#9FC3CB;font-family:var(--mono);display:flex;gap:12px}
+.legend i{font-style:normal}
+.ld{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px}
+
+.empty{background:var(--kart);border:1px dashed var(--sis);border-radius:var(--radius);padding:26px 16px;text-align:center;color:var(--soluk);font-size:14px;margin-top:14px}
+.note{font-size:12px;color:var(--soluk);margin:14px 2px 6px;line-height:1.5}
+.count{font-family:var(--mono);font-size:12px;color:var(--soluk);margin:8px 2px}
+.more{width:100%;padding:12px;border-radius:11px;background:var(--kart);border:1px solid var(--sis);font-weight:700;color:var(--iskele);margin-top:4px}
+.h2{font-size:19px;font-weight:900;font-stretch:108%;margin:16px 2px 2px}
+.sub{font-size:12.5px;color:var(--soluk);margin:2px 2px 12px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hbar">
+    <button class="back" id="backBtn" aria-label="Geri">←</button>
+    <div class="brand"><b>TERCİH PANOSU<span class="dot"> ·</span> YKS 2026</b><span>ÖSYM KILAVUZ VERİSİ</span></div>
+    <button class="searchbtn" id="searchBtn" aria-label="Ara">⌕</button>
+  </div>
+  <div class="searchrow" id="searchRow">
+    <input id="q" type="search" placeholder="Bölüm ara: Fizik, Bilgisayar Müh, Ebelik…" autocomplete="off">
+  </div>
+</header>
+
+<main class="wrap" id="app"></main>
+
+<div class="dock">
+  <div class="in">
+    <div class="field" style="flex:0 0 92px">
+      <label>PUAN TÜRÜ</label>
+      <select id="myType"><option>SAY</option><option>EA</option><option>SÖZ</option><option>DİL</option><option>TYT</option></select>
+    </div>
+    <div class="field">
+      <label>2026 BAŞARI SIRAN</label>
+      <input id="myRank" type="text" inputmode="numeric" placeholder="örn. 700000">
+    </div>
+    <button class="go" id="applyRank">Işıkları Yak</button>
+  </div>
+  <div class="legend"><i><span class="ld" style="background:var(--yesil)"></span>sıran yetiyor</i><i><span class="ld" style="background:var(--vapur)"></span>sınırda</i><i><span class="ld" style="background:var(--iskele)"></span>2025'te dolmadı</i></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+/* ── durum ── */
+const S = {
+  view: 'home', city: null, uni: null, q: '',
+  fPT: null, fLvl: null, fTy: null, fFit: false, sort: 'r',
+  myType: localStorage.getItem('myType') || 'SAY',
+  myRank: parseInt(localStorage.getItem('myRank')) || null,
+  stars: new Set(JSON.parse(localStorage.getItem('stars') || '[]')),
+  limit: 120
+};
+const app = document.getElementById('app');
+const fmt = n => n == null ? '—' : n.toLocaleString('tr-TR');
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* düz indeks (arama için) */
+const FLAT = [];
+YKS_DATA.forEach(c => c.u.forEach(u => u.p.forEach(p => FLAT.push({c: c.n, un: u.n, ut: u.t, p}))));
+const trLow = s => s.replace(/İ/g,'i').replace(/I/g,'ı').toLowerCase();
+
+/* ── ışık mantığı ── */
+function lamp(p) {
+  const [,,,t,k,r,q] = p;
+  if (r == null && q == null) return {cls:'b', dolmadi:true};       // dolmadı ya da yeni
+  if (!S.myRank || S.myType !== t) return {cls:'', dolmadi:false};
+  if (S.myRank <= r) return {cls:'g', dolmadi:false};
+  if (S.myRank <= r * 1.25) return {cls:'o', dolmadi:false};
+  return {cls:'', dolmadi:false};
+}
+
+/* ── görünümler ── */
+function render() {
+  document.getElementById('backBtn').classList.toggle('show', S.view !== 'home');
+  window.scrollTo(0, 0);
+  if (S.view === 'home') return home();
+  if (S.view === 'city') return cityView();
+  if (S.view === 'uni') return uniView();
+  if (S.view === 'search') return searchView();
+  if (S.view === 'stars') return starsView();
+}
+
+function home() {
+  const near = ['İzmir','Manisa','Aydın','Denizli','Balıkesir','Muğla'];
+  const nearHtml = YKS_DATA.filter(c => near.includes(c.n))
+    .sort((a,b) => near.indexOf(a.n) - near.indexOf(b.n))
+    .map(c => cityBtn(c, true)).join('');
+  const allHtml = YKS_DATA.map(c => cityBtn(c, false)).join('');
+  app.innerHTML = `
+    <div class="board">
+      <div class="mono">SEFER TARİFESİ · 2026</div>
+      <h1>Nereden kalkıyoruz?</h1>
+      <p>${YKS_DATA.length} şehir · 225 üniversite · ${fmt(FLAT.length)} program. Şehrine dokun, panoya bak. Alttan sıralamanı gir, hangi bölümlerin ışığı yanıyor gör.</p>
+    </div>
+    <button class="uni" onclick="S.view='stars';render()" style="display:flex;justify-content:space-between;align-items:center">
+      <h3>⭐ Tercih Listem</h3><span class="tag n">${S.stars.size} bölüm</span>
+    </button>
+    <div class="sec">Ege'nin Kıyısı</div>
+    <div class="grid">${nearHtml}</div>
+    <div class="sec">Tüm Şehirler</div>
+    <div class="grid">${allHtml}</div>
+    <p class="note">Veriler ÖSYM 2026 YKS Tercih Kılavuzu'ndan (21 Temmuz 2026 ön bilgi sürümü). "2025 sırası" geçen yılki son yerleşen kişinin başarı sırası — pusula niteliğinde, garanti değil. Kesin karar öncesi YÖK Atlas ve güncel kılavuzdan teyit et.</p>`;
+}
+const cityBtn = (c, pin) => `<button class="city${pin?' pin':''}" onclick="openCity('${esc(c.n)}')"><b>${esc(c.n)}</b><span>${c.u.length} üni</span></button>`;
+
+function openCity(name){ S.city = name; S.uni = null; S.view = 'city'; render(); }
+
+function cityView() {
+  const c = YKS_DATA.find(x => x.n === S.city);
+  if (!c) return home();
+  const unis = c.u.map((u, i) => {
+    const rs = u.p.filter(p => p[5]).map(p => p[5]);
+    const best = rs.length ? Math.min(...rs) : null;
+    const lis = u.p.filter(p => p[8] === 1).length;
+    return `<button class="uni" onclick="openUni(${i})">
+      <h3>${esc(u.n)}</h3>
+      <div class="meta">
+        <span class="tag ${u.t}">${{D:'DEVLET',V:'VAKIF',K:'KKTC',Y:'YURT DIŞI'}[u.t]||''}</span>
+        <span class="tag n">${u.p.length} program</span>
+        ${lis ? `<span class="tag n">${lis} lisans</span>` : ''}
+        ${best ? `<span class="tag n">en iyi sıra ${fmt(best)}</span>` : ''}
+      </div></button>`;
+  }).join('');
+  app.innerHTML = `<div class="h2">${esc(c.n)}</div><div class="sub">${c.u.length} yükseköğretim kurumu</div>${unis}`;
+}
+
+function openUni(i){ S.uni = i; S.view = 'uni'; S.limit = 400; render(); }
+
+function filters(showFit) {
+  const pts = ['TYT','SAY','EA','SÖZ','DİL'];
+  return `<div class="fbar">
+    ${showFit ? `<button class="f ${S.fFit?'on':''}" onclick="S.fFit=!S.fFit;render()">● sıram yetenler</button>` : ''}
+    ${pts.map(t => `<button class="f ${S.fPT===t?'on':''}" onclick="S.fPT=S.fPT==='${t}'?null:'${t}';render()">${t}</button>`).join('')}
+    <button class="f ${S.fLvl==='L'?'on':''}" onclick="S.fLvl=S.fLvl==='L'?null:'L';render()">Lisans</button>
+    <button class="f ${S.fLvl==='O'?'on':''}" onclick="S.fLvl=S.fLvl==='O'?null:'O';render()">Önlisans</button>
+    <button class="f ${S.sort==='r'?'on':''}" onclick="S.sort=S.sort==='r'?null:'r';render()">Sıraya göre</button>
+  </div>`;
+}
+
+function passF(p) {
+  if (S.fPT && p[3] !== S.fPT) return false;
+  if (S.fLvl === 'L' && p[8] !== 1) return false;
+  if (S.fLvl === 'O' && p[8] !== 0) return false;
+  if (S.fFit) { const l = lamp(p); if (!(l.cls === 'g' || l.cls === 'o' || l.dolmadi)) return false; }
+  return true;
+}
+
+function progRow(p, uniName, cityName) {
+  const [code, name, sure, pt, k, r, q, fak, L] = p;
+  const l = lamp(p);
+  const on = S.stars.has(code);
+  return `<div class="prog">
+    <span class="lamp ${l.cls}"></span>
+    <div class="pbody">
+      <div class="pname">${esc(name)}</div>
+      ${uniName ? `<div class="puni">${esc(uniName)} · ${esc(cityName)}</div>` : ''}
+      <div class="pchips">
+        <span class="chip t">${pt}</span><span class="chip">${sure} yıl</span>
+        ${k != null ? `<span class="chip">kont ${k}</span>` : ''}
+        ${l.dolmadi ? `<span class="chip doldu">2025'TE DOLMADI</span>` : ''}
+        <span class="chip">${code}</span>
+      </div>
+    </div>
+    <div class="pnum">
+      <div class="pr">${fmt(r)}</div>
+      <div class="pq">${q != null ? q.toFixed(2) + ' puan' : 'veri yok'}</div>
+    </div>
+    <button class="star ${on?'on':''}" onclick="toggleStar('${code}')" aria-label="Tercih listeme ekle">${on?'★':'☆'}</button>
+  </div>`;
+}
+
+function uniView() {
+  const c = YKS_DATA.find(x => x.n === S.city);
+  const u = c && c.u[S.uni];
+  if (!u) return home();
+  let list = u.p.filter(passF);
+  if (S.sort === 'r') list = [...list].sort((a,b) => (a[5]||9e9) - (b[5]||9e9));
+  let html = `<div class="h2">${esc(u.n)}</div>
+    <div class="sub">${esc(c.n)} · ${{D:'Devlet',V:'Vakıf',K:'KKTC',Y:'Yurt Dışı'}[u.t]||''} · ${u.p.length} program</div>
+    ${filters(true)}<div class="count">${list.length} program görünüyor</div>`;
+  if (S.sort === 'r') {
+    html += list.map(p => progRow(p, null, null)).join('');
+  } else {
+    let lastFak = null;
+    for (const p of list) {
+      if (p[7] !== lastFak) { lastFak = p[7]; if (lastFak) html += `<div class="fak">${esc(lastFak)}</div>`; }
+      html += progRow(p, null, null);
+    }
+  }
+  if (!list.length) html += `<div class="empty">Bu filtrelerle program yok. Filtreleri gevşetmeyi dene.</div>`;
+  app.innerHTML = html;
+}
+
+function searchView() {
+  const q = trLow(S.q.trim());
+  if (q.length < 2) { app.innerHTML = `<div class="empty">En az 2 harf yaz — bölüm adı, üniversite ya da program kodu.</div>`; return; }
+  let res = FLAT.filter(x => trLow(x.p[1]).includes(q) || trLow(x.un).includes(q) || x.p[0].startsWith(S.q.trim()));
+  res = res.filter(x => passF(x.p));
+  res.sort((a,b) => (a.p[5]||9e9) - (b.p[5]||9e9));
+  const total = res.length;
+  const shown = res.slice(0, S.limit);
+  app.innerHTML = `<div class="h2">"${esc(S.q)}"</div><div class="sub">${fmt(total)} sonuç · sıralamaya göre</div>
+    ${filters(true)}
+    ${shown.map(x => progRow(x.p, x.un, x.c)).join('')}
+    ${total > S.limit ? `<button class="more" onclick="S.limit+=200;render()">Daha fazla göster (${fmt(total - S.limit)} kaldı)</button>` : ''}
+    ${!total ? `<div class="empty">Sonuç yok. Yazımı kontrol et ya da filtreleri kaldır.</div>` : ''}`;
+}
+
+function starsView() {
+  const res = FLAT.filter(x => S.stars.has(x.p[0]));
+  res.sort((a,b) => (a.p[5]||9e9) - (b.p[5]||9e9));
+  app.innerHTML = `<div class="h2">⭐ Tercih Listem</div><div class="sub">${res.length} bölüm — yıldızladıkların burada, kodlarıyla beraber. ÖSYM ekranına girerken kopyala.</div>
+    ${res.map(x => progRow(x.p, x.un, x.c)).join('')}
+    ${!res.length ? `<div class="empty">Henüz boş. Bölümlerin yanındaki ☆ işaretine dokunarak taslak tercih listeni kur.</div>` : ''}`;
+}
+
+function toggleStar(code) {
+  S.stars.has(code) ? S.stars.delete(code) : S.stars.add(code);
+  localStorage.setItem('stars', JSON.stringify([...S.stars]));
+  render();
+}
+
+/* ── olaylar ── */
+document.getElementById('backBtn').onclick = () => {
+  if (S.view === 'uni') S.view = 'city';
+  else { S.view = 'home'; S.q = ''; document.getElementById('q').value = ''; }
+  render();
+};
+const sRow = document.getElementById('searchRow');
+document.getElementById('searchBtn').onclick = () => {
+  sRow.classList.toggle('open');
+  if (sRow.classList.contains('open')) document.getElementById('q').focus();
+};
+let deb;
+document.getElementById('q').addEventListener('input', e => {
+  clearTimeout(deb);
+  deb = setTimeout(() => { S.q = e.target.value; S.view = 'search'; S.limit = 120; render(); }, 220);
+});
+const rankIn = document.getElementById('myRank'), typeIn = document.getElementById('myType');
+typeIn.value = S.myType;
+if (S.myRank) rankIn.value = S.myRank;
+document.getElementById('applyRank').onclick = () => {
+  S.myRank = parseInt(rankIn.value.replace(/\D/g, '')) || null;
+  S.myType = typeIn.value;
+  localStorage.setItem('myRank', S.myRank || '');
+  localStorage.setItem('myType', S.myType);
+  render();
+};
+render();
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
