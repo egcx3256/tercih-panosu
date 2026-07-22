@@ -15,22 +15,6 @@
 - ⭐ ile taslak tercih listesi (telefonda kayıtlı kalır)
 - İnternetsiz de çalışır (ilk açılıştan sonra)
 
-## GitHub Pages'e Yükleme (5 dakika)
-
-1. [github.com](https://github.com) hesabına gir → sağ üstte **+** → **New repository**
-2. İsim ver (örn. `tercih-panosu`), **Public** seç, **Create repository**
-3. **uploading an existing file** linkine tıkla → bu klasördeki **tüm dosyaları** sürükle bırak:
-   - `index.html`, `data.js`, `manifest.webmanifest`, `sw.js`, `icon-192.png`, `icon-512.png`
-4. **Commit changes** butonuna bas
-5. Repo'da **Settings → Pages** → "Branch" altında **main** seç, **Save**
-6. 1-2 dakika sonra siten hazır: `https://KULLANICIADIN.github.io/tercih-panosu/`
-
-## Telefona Ekleme
-
-**Android (Chrome):** Siteyi aç → sağ üst **⋮** menü → **Ana ekrana ekle** (veya çıkan "Uygulamayı yükle" bildirimine bas). Uygulama gibi açılır.
-
-**iPhone (Safari):** Siteyi aç → alttaki **paylaş** (kare+ok) ikonu → **Ana Ekrana Ekle** → **Ekle**.
-
 ## Önemli Not ⚠️
 
 Sıralama ve puanlar **2025-YKS yerleştirme sonuçlarıdır** — 2026 tercihine referans olsun diye kılavuzda yayınlanır, garanti değildir. Her yıl sıralamalar kayar. Kesin karar vermeden önce [YÖK Atlas](https://yokatlas.yok.gov.tr) ve güncel ÖSYM kılavuzundan teyit et. Tercih dönemi: **29 Temmuz – 10 Ağustos 2026**.
